@@ -1,5 +1,9 @@
 # Intro to Git and Github
 
+This guide is a collection of the very basics of how to use Git and Github in your
+work. If you find that you need additional information beyond this document, the
+[Github documentation](https://docs.github.com/get-started) is quite good.
+
 ## The basics
 
 ### What is Git?
@@ -32,7 +36,29 @@ made publicly available.
 
 ## Initial setup of Git/Github
 
-asdf
+To start using Git, first check whether it is installed on your computer. If you
+use WSL, Git is probably already installed. Otherwise, look
+[here](https://git-scm.com/downloads) to download Git for your system. There is
+a GUI-based Git client available for download, but this guide will focus on the
+command line interface due to its more general applicability (for example, the
+GUI may not be usable when working on remote servers like ocean).
+
+Once Git is installed, there are a few initial setup steps.
+
+1. Set a name to be used to mark you as the author of your commits. This doesn't
+need to be the same as your Github username. In your terminal,
+run `git config --global user.name "<name>"`
+2. Set an email to attach to your git commits. Again, this doesn't have to be the
+email connected to your Github account. In your terminal, run
+`git config --global user.email "<email-address>"`
+3. To enable helpful color in git output, run `git config --global color.ui auto`
+
+If you want to work with remote repositories, you will first need to set up a
+Github account and verify the email associated with it. Once you have done that,
+you will need to set up credentials so that Github can verify your identity when
+communicating with you over the command line. This process will look slightly
+different depending on whether you use HTTPS or SSH as your secure channel with
+Github.
 
 ## Setting up a project repository
 
