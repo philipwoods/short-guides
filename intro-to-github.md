@@ -2,7 +2,19 @@
 
 This guide is a collection of the very basics of how to use Git and Github in your
 work. If you find that you need additional information beyond this document, the
-[Github documentation](https://docs.github.com/get-started) is quite good.
+[Github documentation](https://docs.github.com/get-started) is quite good. Github
+also created a very helpful
+[Git cheat sheet](https://training.github.com/downloads/github-git-cheat-sheet/)
+for quick reference.
+
+Note that this guide describes how to use Git and Github to track and back up
+your own work. If all you want is to download someone's existing code from Github,
+you can simply use the command `git clone <url>"` where the url of the desired
+repository can be found in the green 'Code' dropdown menu on the repository's
+Github website.
+
+Because of its common usage in scientific computing, all example commands provided
+in this guide assume a UNIX-based operating system such as Linux or MacOS.
 
 ## The basics
 
@@ -36,6 +48,8 @@ made publicly available.
 
 ## Initial setup of Git/Github
 
+### Installing and configuring Git
+
 To start using Git, first check whether it is installed on your computer. If you
 use WSL, Git is probably already installed. Otherwise, look
 [here](https://git-scm.com/downloads) to download Git for your system. There is
@@ -48,17 +62,55 @@ Once Git is installed, there are a few initial setup steps.
 1. Set a name to be used to mark you as the author of your commits. This doesn't
 need to be the same as your Github username. In your terminal,
 run `git config --global user.name "<name>"`
-2. Set an email to attach to your git commits. Again, this doesn't have to be the
+2. Set an email to attach to your git commits. This should be the same
 email connected to your Github account. In your terminal, run
 `git config --global user.email "<email-address>"`
 3. To enable helpful color in git output, run `git config --global color.ui auto`
+
+### Setting up secure connections with Github
 
 If you want to work with remote repositories, you will first need to set up a
 Github account and verify the email associated with it. Once you have done that,
 you will need to set up credentials so that Github can verify your identity when
 communicating with you over the command line. This process will look slightly
 different depending on whether you use HTTPS or SSH as your secure channel with
-Github.
+Github, but the end result will be essentially the same either way. You will need
+to remember which authentication protocol you chose, because the URL referring to
+a Github repository is slightly different when using HTTPS or SSH.
+
+#### Connecting with HTTPS
+
+I haven't used HTTPS very much to communicate with Github, so take this with a
+grain of salt. My understanding is that you simply use your normal Github account
+credentials to authenticate this way, but Github may be removing this in favor of
+personal access tokens. These personal access tokens are more secure in that you
+can choose the priveleges associated with each token, but this may not be necessary
+for typical users. For more information about setting up personal access tokens,
+see the guide [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+#### Connecting with SSH
+
+Using SSH to authenticate requires the use of a public and private cryptographic
+key. The public key is provided to Github and the private key is kept on your
+local device. If you want to connect to Github from multiple devices (e.g. your
+work laptop and ocean) you should create a new key pair on each device. To create
+these key pairs, run the following command in your terminal, substituting the
+email address you provided to Git in the previous step:
+
+        `ssh-keygen -t ed25519 -C "<github-email>"`
+
+If you are prompted to "enter a file in which to save the key," just press ENTER
+to accept the default location and name. If you are prompted to enter a passphrase,
+either press ENTER to choose no passphrase, or enter a password which will be
+required each time you initiate an SSH connection as an extra layer of security.
+This passphrase does not need to be your Github account password.
+
+After the files have been created, you need to provide the public key to Github.
+After logging into your account, go to `Settings>SSH and GPG keys` and click the
+green "New SSH key" button. Add a title for the key (e.g. the name of the device
+the key is on). In your terminal enter the command `cat ~/.ssh/id_ed25519.pub`
+and copy the output into the "Key" field on Github, then click "Add SSH key" to
+finish the process.
 
 ## Setting up a project repository
 
