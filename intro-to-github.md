@@ -16,6 +16,9 @@ Github website.
 Because of its common usage in scientific computing, all example commands provided
 in this guide assume a UNIX-based operating system such as Linux or MacOS.
 
+If you have questions about any of this information and the documentation above
+isn't clear, feel free to ask me (Philip) for help.
+
 ## The basics
 
 ### What is Git?
@@ -120,9 +123,46 @@ asdf
 
 asdf
 
+Talk about git diff and git log
+
 ### Git branches and collaborative editing
 
 asdf
+
+### Useful Git aliases
+
+For common operations, you can define aliases in Git. Here are a few that I
+find useful.
+
+* `git config --global alias.co checkout`
+* `git config --global alias.br branch`
+* `git config --global alias.ci commit`
+* `git config --global alias.st status`
+* `git config --global alias.cm=commit -m`
+* `git config --global alias.aa=add -A .`
+This alias adds all files in the current directory to Git to be tracked and/or stages them for the next commit.
+* `git config --global alias.ca=commit -a`
+This alias commits all modified files.
+* `git config --global alias.cam=commit -a -m`
+* `git config --global alias.df=diff`
+This alias shows the unstaged changes from the previous commit.
+* `git config --global alias.dfc=diff --cached`
+This alias shows the staged changes from the previous commit.
+* `git config --global alias.dfh=diff HEAD`
+This alias shows all changes (staged and unstaged) from the previous commit.
+* `git config --global alias.poh=push origin HEAD`
+This alias pushes the current state of the current branch to Github.
+* `git config --global alias.pom=push origin main`
+This alias pushes the current state of the main branch to Github.
+* `git config --global alias.ls=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate`
+This alias reformats the output of `git log` to be more condensed and readable.
+* `git config --global alias.ll=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat`
+This alias is the same as the above, but it also lists the file modifications for each commit.
+* `git config --global alias.la=!git config -l | grep alias | cut -c 7-`
+This alias lists all existing git aliases.
+
+For example, if you set the first alias in the list, then typing `git co` in
+your terminal will be equivalent to typing `git checkout`.
 
 ###
 
