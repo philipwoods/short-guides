@@ -148,9 +148,36 @@ paragraph.
 
 As mentioned before, Git tracks changes to files by creating a chain of commits, each
 of which is a snapshot of the history of the files in the repository at a particular
-time.
+time. When you change the contents of a file that Git is tracking, it can detect
+those changes. When you want to record your changes, creating a new snapshot of the
+history of the file(s), you will need to create a commit. As a general rule of thumb,
+it's a good idea to commit often rather than waiting until many unrelated changes
+have accumulated.
 
-Talk about git diff and git log
+Once you have reached a point that you want to store as a commit, save your work and
+enter `git status` in your terminal. Git will display a list of all modified files,
+describing them as "unstaged." You need to tell Git which file(s) should be included
+in the new commit by "staging" them. You can do this by entering `git add <filename>`
+in your terminal. If you want to stage all of the changed files at once, you can
+enter `git add -a` meaning "add all." If you re-enter `git status`, you should
+see that your file(s) are now described as "staged" or listed under "Changes to be
+committed." When you create a commit, only the changes which have been staged will
+be recorded, even if there are other changes to files in the project.
+
+You may want to see what changes have been made to your files before choosing what
+changes should be committed. You can do this by entering `git diff` into your
+terminal. This will also show you how Git tracks changes to files. Git views files
+line by line, and if you change a line it records that as removing the old version
+of the line and adding the new version of the line to the file. Added lines are
+prefixed with `+` and removed lines are prefixed by `-` and may be highlighted with
+color depending on your terminal settings. As a quick reference, `git diff` will
+show all _unstaged_ changes compared to the last commit, `git diff --cached` will
+show all _staged_ changes compared to the last commit, and `git diff HEAD` will
+show all changes (staged or unstaged) compared to the last commit.
+
+Talk about git commit
+
+Talk git log
 
 ### Git branches and collaborative editing
 
