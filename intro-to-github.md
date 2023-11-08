@@ -69,6 +69,9 @@ run `git config --global user.name "<name>"`
 email connected to your Github account. In your terminal, run
 `git config --global user.email "<email-address>"`
 3. To enable helpful color in git output, run `git config --global color.ui auto`
+4. (Optional) Choose a text editor for crafting commit messages. If you
+have a preferred text editor, run `git config --global core.editor=<editor>`
+in your terminal. By default, git will use nano.
 
 ### Setting up secure connections with Github
 
@@ -164,7 +167,11 @@ in your terminal. If you want to stage all of the changed files at once, you can
 enter `git add -a` meaning "add all." If you re-enter `git status`, you should
 see that your file(s) are now described as "staged" or listed under "Changes to be
 committed." When you create a commit, only the changes which have been staged will
-be recorded, even if there are other changes to files in the project.
+be recorded, even if there are other changes to files in the project. Note that if
+you continue to edit a file after staging it, those later edits are not staged.
+This is represented in the output of `git status` as the file appearing in both the
+"unstaged" and "staged" sections. To stage these later edits, simply `git add` the
+file again.
 
 You may want to see what changes have been made to your files before choosing what
 changes should be committed. You can do this by entering `git diff` into your
@@ -179,7 +186,14 @@ show all changes (staged or unstaged) compared to the last commit.
 
 Once you have staged all of the relevant changes, it is time to actually record
 the commit. At its most basic, this can be done by entering `git commit` in your
-terminal.
+terminal. At this point, Git will open a text editor and prompt you to write a
+commit message describing the contents of the commit (i.e. what changes have
+been made). These messages can have a title and a body which are separated by a
+blank line. Common practice is to keep the title brief (less than 50 characters)
+and if more detailed explanation of the commit is required, to put that in the
+body of the message. Once you save the commit message, Git will record the commit.
+If your commit message doesn't need a body, you can also enter it directly using
+the `-m` flag, like `git commit -m "<message>"`.
 
 ### Interacting with remote repositories
 
@@ -189,7 +203,7 @@ Talk remotes (origin, push, pull)
 
 asdf
 
-### Visualizing the project history
+## Visualizing the project history
 
 Talk git log
 
