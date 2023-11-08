@@ -119,33 +119,36 @@ finish the process.
 
 In your Github account, click the ["New repository?"] button [near the upper right corner].
 Choose a relevant name for the project, scroll down, and click the [button] to create
-the repository. Github should display a page with two different sets of commands to run
-in your terminal. If you have already created a Git repository on your local machine and simply
-need to link it to Github, you should run the second set of commands. Otherwise, run the first
-set of commands.
+the repository. Github should display a page with two different sets of commands to
+run in your terminal. If you have already created a Git repository on your local
+machine and simply need to link it to Github, you should run the second set of commands.
+Otherwise, run the first set of commands.
 
-In order to start working in the repository, you need to tell Git which files to pay attention
-to. In your new repository, type `git status` into your terminal. This will display a message
-describing "staged" files, "unstaged" files, and/or "untracked" files. If a file shows up in the
-"untracked" list, that means Git recognized that it is present in the project directory, but Git
-is not tracking its history. To tell Git to track a file, enter `git add <filename>` into your
-terminal. If you run `git status` again, you should see that file has moved from the list of
-"untracked" files to the list of "staged" files. We will cover what this means in the next
-section.
+In order to start working in the repository, you need to tell Git which files to pay
+attention to. In your new repository, type `git status` into your terminal. This will
+display a message describing "staged" files, "unstaged" files, and/or "untracked"
+files. If a file shows up in the "untracked" list, that means Git recognized that it
+is present in the project directory, but Git is not tracking its history. To tell Git
+to track a file, enter `git add <filename>` into your terminal. If you run `git status`
+again, you should see that file has moved from the list of "untracked" files to the
+list of "staged" files. We will cover what this means in the next section.
 
-There may be files that will be stored in your project directory that you never want Git to track.
-By default, any untracked file will always appear in the "untracked" section of a `git status`
-message, which can add a lot of clutter. If you have files you want Git to ignore forever, you
-can create a file named `.gitignore` in your project directory and list the names of those
-files in it, one file name per line. You can also use bash text expansion syntax to specify multiple
-files at once: adding the line `*.pdf` to your `.gitignore` file will tell git to ignore all PDFs
-in that directory. If you change your mind later, you can simply remove the name of a file from
-the `.gitignore` file and add it to Git as described in the previous paragraph.
+There may be files that will be stored in your project directory that you never want
+Git to track. By default, any untracked file will always appear in the "untracked"
+section of a `git status` message, which can add a lot of clutter. If you have files
+you want Git to ignore forever, you can create a file named `.gitignore` in your
+project directory and list the names of those files in it, one file name per line.
+You can also use bash text expansion syntax to specify multiple files at once:
+adding the line `*.pdf` to your `.gitignore` file will tell git to ignore all PDFs
+in that directory. If you change your mind later, you can simply remove the name of
+a file from the `.gitignore` file and add it to Git as described in the previous
+paragraph.
 
 ## Storing commits in Git and Github
 
-As mentioned before, Git tracks changes to files by creating a chain of commits, each of which
-is a snapshot of the history of the files in the repository at a particular time.
+As mentioned before, Git tracks changes to files by creating a chain of commits, each
+of which is a snapshot of the history of the files in the repository at a particular
+time.
 
 Talk about git diff and git log
 
