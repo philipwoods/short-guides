@@ -117,11 +117,35 @@ finish the process.
 
 ## Setting up a project repository
 
-asdf
+In your Github account, click the ["New repository?"] button [near the upper right corner].
+Choose a relevant name for the project, scroll down, and click the [button] to create
+the repository. Github should display a page with two different sets of commands to run
+in your terminal. If you have already created a Git repository on your local machine and simply
+need to link it to Github, you should run the second set of commands. Otherwise, run the first
+set of commands.
+
+In order to start working in the repository, you need to tell Git which files to pay attention
+to. In your new repository, type `git status` into your terminal. This will display a message
+describing "staged" files, "unstaged" files, and/or "untracked" files. If a file shows up in the
+"untracked" list, that means Git recognized that it is present in the project directory, but Git
+is not tracking its history. To tell Git to track a file, enter `git add <filename>` into your
+terminal. If you run `git status` again, you should see that file has moved from the list of
+"untracked" files to the list of "staged" files. We will cover what this means in the next
+section.
+
+There may be files that will be stored in your project directory that you never want Git to track.
+By default, any untracked file will always appear in the "untracked" section of a `git status`
+message, which can add a lot of clutter. If you have files you want Git to ignore forever, you
+can create a file named `.gitignore` in your project directory and list the names of those
+files in it, one file name per line. You can also use bash text expansion syntax to specify multiple
+files at once: adding the line `*.pdf` to your `.gitignore` file will tell git to ignore all PDFs
+in that directory. If you change your mind later, you can simply remove the name of a file from
+the `.gitignore` file and add it to Git as described in the previous paragraph.
 
 ## Storing commits in Git and Github
 
-asdf
+As mentioned before, Git tracks changes to files by creating a chain of commits, each of which
+is a snapshot of the history of the files in the repository at a particular time.
 
 Talk about git diff and git log
 
@@ -129,37 +153,62 @@ Talk about git diff and git log
 
 asdf
 
-### Useful Git aliases
+## Useful Git aliases
 
-For common operations, you can define aliases in Git. Here are a few that I
+For common operations, you may want to define aliases in Git. Here are a few that I
 find useful.
 
 * `git config --global alias.co checkout`
+
 * `git config --global alias.br branch`
+
 * `git config --global alias.ci commit`
+
 * `git config --global alias.st status`
+
 * `git config --global alias.cm=commit -m`
+
 * `git config --global alias.aa=add -A .`
-This alias adds all files in the current directory to Git to be tracked and/or stages them for the next commit.
+
+    This alias adds all files in the current directory to Git to be tracked and/or stages them for the next commit.
+
 * `git config --global alias.ca=commit -a`
-This alias commits all modified files.
+
+    This alias commits all modified files, whether or not they were already staged for a commit.
+
 * `git config --global alias.cam=commit -a -m`
+
 * `git config --global alias.df=diff`
-This alias shows the unstaged changes from the previous commit.
+
+    This alias shows the unstaged changes from the previous commit.
+
 * `git config --global alias.dfc=diff --cached`
-This alias shows the staged changes from the previous commit.
+
+    This alias shows the staged changes from the previous commit.
+
 * `git config --global alias.dfh=diff HEAD`
-This alias shows all changes (staged and unstaged) from the previous commit.
+
+    This alias shows all changes (staged and unstaged) from the previous commit.
+
 * `git config --global alias.poh=push origin HEAD`
-This alias pushes the current state of the current branch to Github.
+
+    This alias pushes the current state of the current branch to Github.
+
 * `git config --global alias.pom=push origin main`
-This alias pushes the current state of the main branch to Github.
+
+    This alias pushes the current state of the main branch to Github.
+
 * `git config --global alias.ls=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate`
-This alias reformats the output of `git log` to be more condensed and readable.
+
+    This alias reformats the output of `git log` to be more condensed and readable.
+
 * `git config --global alias.ll=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat`
-This alias is the same as the above, but it also lists the file modifications for each commit.
+
+    This alias is the same as the above, but it also lists which files were modified in each commit.
+
 * `git config --global alias.la=!git config -l | grep alias | cut -c 7-`
-This alias lists all existing git aliases.
+
+    This alias lists all existing git aliases.
 
 For example, if you set the first alias in the list, then typing `git co` in
 your terminal will be equivalent to typing `git checkout`.
