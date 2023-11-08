@@ -120,9 +120,9 @@ finish the process.
 In your Github account, click the ["New repository?"] button [near the upper right corner].
 Choose a relevant name for the project, scroll down, and click the [button] to create
 the repository. Github should display a page with two different sets of commands to
-run in your terminal. If you have already created a Git repository on your local
-machine and simply need to link it to Github, you should run the second set of commands.
-Otherwise, run the first set of commands.
+run in your terminal. If you have already created a Git repository with `git init`
+on your local machine and simply need to link it to Github, you should run the second
+set of commands. Otherwise, run the first set of commands.
 
 In order to start working in the repository, you need to tell Git which files to pay
 attention to. In your new repository, type `git status` into your terminal. This will
@@ -154,6 +154,8 @@ history of the file(s), you will need to create a commit. As a general rule of t
 it's a good idea to commit often rather than waiting until many unrelated changes
 have accumulated.
 
+### Making commits to local repositories
+
 Once you have reached a point that you want to store as a commit, save your work and
 enter `git status` in your terminal. Git will display a list of all modified files,
 describing them as "unstaged." You need to tell Git which file(s) should be included
@@ -175,13 +177,21 @@ show all _unstaged_ changes compared to the last commit, `git diff --cached` wil
 show all _staged_ changes compared to the last commit, and `git diff HEAD` will
 show all changes (staged or unstaged) compared to the last commit.
 
-Talk about git commit
+Once you have staged all of the relevant changes, it is time to actually record
+the commit. At its most basic, this can be done by entering `git commit` in your
+terminal.
 
-Talk git log
+### Interacting with remote repositories
+
+Talk remotes (origin, push, pull)
 
 ### Git branches and collaborative editing
 
 asdf
+
+### Visualizing the project history
+
+Talk git log
 
 ## Useful Git aliases
 
@@ -228,13 +238,13 @@ find useful.
 
     This alias pushes the current state of the main branch to Github.
 
-* `git config --global alias.ls=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate`
+* `git config --global alias.ls=log --pretty=format:"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]" --decorate=short --graph`
 
     This alias reformats the output of `git log` to be more condensed and readable.
 
-* `git config --global alias.ll=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat`
+* `git config --global alias.ll=log --pretty=format:"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]%n%Creset%b" --decorate=full --numstat`
 
-    This alias is the same as the above, but it also lists which files were modified in each commit.
+    This alias is similar to the `ls` alias above, but it also lists which files were modified in each commit and other details.
 
 * `git config --global alias.la=!git config -l | grep alias | cut -c 7-`
 
