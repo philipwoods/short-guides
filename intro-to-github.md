@@ -197,11 +197,51 @@ the `-m` flag, like `git commit -m "<message>"`.
 
 ### Interacting with remote repositories
 
-Talk remotes (origin, push, pull)
+When you initially set up a repository, Github tells you to designate a "remote"
+called `origin` which is associated with the Github URL of your repository. This
+is how Git knows where to look when communicating with the Github remote backup
+of your repository. The standard idiom is that this remote repository is always
+given the shorthand name `origin`.
+
+The main way you will interact with a project's remote repository is sending
+information about commits to be stored in the remote. This is accomplished with
+the command `git push <remote> <commit-reference>`. If you followed Github's
+instructions when creating your repository, the remote will be named `origin`,
+meaning the previous command becomes `git push origin <commit-reference>`.
+There are several ways to specify a commit to push the remote. The most
+common way is to use the name of a branch: the command `git push origin main`
+will push the last commit of the `main` branch to the `main` branch in the
+remote, bringing the remote up to date with your local repository. Other
+possible ways to specify a commit include using the `HEAD` reference, which
+identifies the commit you are currently viewing, and using the unique hash
+identifier for a commit.
+
+If you are working on a project with others or are updating it from two different
+local copies of the repository (e.g. one copy on a work laptop and one on ocean),
+it is possible that the remote repository will have commits stored that you do
+not have in your local repository. You can bring your local repository up to date
+with the remote by using the command `git pull` or `git fetch`. These commands will
+download all updates from the remote repository to your local copy. The `git pull`
+command will also merge these updates into your local files, essentially saving
+over your local files with those in the remote (to a first approximation). Normally,
+this is exactly what you want. However, it also means that if you have any local
+file changes that are not yet stored in a commit, using `git pull` will write over
+those uncommited edits. See the section below about collaborative editing below for
+more information.
+
+Since each commit builds on the previous commits in the project history, pushing
+a commit to the remote will also push all intermediate commits between the current
+state of the remote and the specified commit. Similarly, pulling a commit from the
+remote will also pull all intermediate commits between the state of your local
+repository and the commit on the remote. See the section about visualizing the
+project history if you need help thinking about this.
 
 ### Git branches and collaborative editing
 
-asdf
+If you are in this situation, you should commit your local changes, run `git fetch`,
+and then run `git merge` to incorporate the changes from the remote into your local
+files. To avoid this situation, it is good practice to never leave local changes
+uncommitted, and to run `git pull` before starting to edit a shared branch.
 
 ## Visualizing the project history
 
