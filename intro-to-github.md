@@ -205,7 +205,23 @@ asdf
 
 ## Visualizing the project history
 
-Talk git log
+You may want to visually represent the chain of commits in your project's history.
+This can be accomplished with the `git log` command. This will display a list of
+the commits in the repository, including for each commit 1) the unique hash
+identifier, 2) the name and email of the commit's author, 3) the date and time of
+the commit, and 4) the associated commit message. However, this takes up a lot of
+space and you often won't need to see all that detail. The next section contains
+some aliases that might be useful for condensing the log output into a more legible
+form.
+
+You may also notice odd-looking parentheticals in the log output like `(HEAD -> main)`
+or `(origin/main)`. These indicate various reference points that Git uses to track
+your position in the project history. The `HEAD` reference indicates your current
+position in the project history. If you have multiple branches in your project, the
+current state of each branch will be marked with the branch name (e.g. `main`) and
+`HEAD` will indicate which branch you are currently viewing. References like
+`origin/main` indicate the state of the remote repository (e.g. the latest commit
+on the `main` branch which exists on the remote `origin`).
 
 ## Useful Git aliases
 
