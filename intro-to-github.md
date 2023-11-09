@@ -238,10 +238,73 @@ project history if you need help thinking about this.
 
 ### Git branches and collaborative editing
 
-If you are in this situation, you should commit your local changes, run `git fetch`,
-and then run `git merge` to incorporate the changes from the remote into your local
-files. To avoid this situation, it is good practice to never leave local changes
-uncommitted, and to run `git pull` before starting to edit a shared branch.
+When you are the only person working in a repository and are simply using Github
+as a backup system, the above information should be enough to keep you out of
+trouble. However, if you are working in a repository with multiple authors (which
+includes yourself working from multiple devices!), there are a few extra
+considerations to pay attention to.
+
+#### Potential pitfalls
+
+The main issue that can arise in this situation is when multiple authors have
+edited the same file in a repository and made separate commits which are pushed or
+pulled to the same local or remote repository. Git is fairly smart about handling
+this if the edits are in different parts of the file, but if several authors have
+edited the same line(s) then human intervention is needed to untangle the situation.
+Git can help with this through the `git merge` command, which I strongly encourage
+reading up on if you think this situation may apply to you. Briefly, this tool will
+display the conflicting edits side by side so that you can edit the file to best
+incorporate both changes, and then create a new merge commit.
+
+Another potential issue that can arise is when you have uncommitted local changes
+to files and want to use `git pull` to update your local repository with commits
+from the remote. Using `git pull` in this situation will potentially overwrite
+your local uncommitted changes, resulting in lost work. If you are in this
+situation, you should commit your local changes, run `git fetch`, and then run
+`git merge` to incorporate the changes from the remote into your local files.
+To avoid this situation, it is good practice to never leave local changes
+uncommitted, and to always run `git pull` _before_ starting to edit a shared branch.
+
+#### Best practice workflow
+
+Programmers have developed a common practice workflow for shared repositories to
+minimize the occurrence of issues like these. The core of this workflow is that the
+main branch of a project is rarely directly edited, if ever. Instead, a programmer
+will create a new branch when developing a new feature, which can then be merged
+into the main branch once the feature is complete.
+
+        A--B (main)
+            \
+             E--F--G (newbranch)
+
+As other people complete features and merge their branches into `main`, the two
+branches will now have distinct histories:
+
+        A--B--C--D (main)
+            \
+             E--F--G (newbranch)
+
+Once you complete work on the new branch, you can switch back to the main branch,
+update your copy using `git pull`, and use `git merge newbranch` to incorporate the
+changes from `newbranch` into the main branch.
+
+        A--B--C--D---H (main)
+            \       /
+             E--F--G (newbranch)
+
+This way you only have to merge once, and there's a much lower chance of someone
+writing over your work or you writing over theirs.
+
+To create a new branch, use the command `git branch <branchname>`. This creates
+the new branch, but it does *not* switch you to the new branch! You can see this
+by running `git log` or similar and looking at where `HEAD` is pointing (`HEAD`
+indicates your current view of the project history). At this point, the contents
+of the files in the original branch and the new branch will be identical. To switch
+to the new branch, run the command `git checkout <branchname>`. Note the changed
+position of `HEAD` when you run `git log`. From this point on, any new commits
+will be stored in the new branch instead of the original branch. Switching back and
+forth between branches with `git checkout` will "magically" update the contents of
+the files so that they reflect the current state of that branch.
 
 ## Visualizing the project history
 
