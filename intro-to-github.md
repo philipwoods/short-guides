@@ -1,4 +1,4 @@
-# Intro to Git and Github
+# Introduction
 
 This guide is a collection of the very basics of how to use Git and Github in your
 work. If you find that you need additional information beyond this document, the
@@ -10,7 +10,7 @@ for quick reference.
 Note that this guide describes how to use Git and Github to track and back up
 your own work. If all you want is to download someone's existing code from Github,
 you can simply use the command `git clone <url>"` where the url of the desired
-repository can be found in the green 'Code' dropdown menu on the repository's
+repository can be found in the green "Code" dropdown menu on the repository's
 Github website.
 
 Because of its common usage in scientific computing, all example commands provided
@@ -19,9 +19,9 @@ in this guide assume a UNIX-based operating system such as Linux or MacOS.
 If you have questions about any of this information and the documentation above
 isn't clear, feel free to ask me (Philip) for help.
 
-## The basics
+# The basics
 
-### What is Git?
+## What is Git?
 
 Git is a version control system which allows you to retain not just the final version
 of your project, but all intermediate versions along the way. This capability is like
@@ -34,7 +34,7 @@ to the project, the author of those changes, and a message describing the conten
 the changes. These commit points are linked together to create a (possibly branching)
 history of the project.
 
-### What is Github?
+## What is Github?
 
 Github is a website which you can use to remotely store your Git repositories. It is
 possible to use Git without using Github. However, Github is a very useful resource,
@@ -49,9 +49,9 @@ While Github makes projects publicly visible by default, it is possible to creat
 limited number of private repositories which will be stored through Github but not
 made publicly available.
 
-## Initial setup of Git/Github
+# Initial setup of Git/Github
 
-### Installing and configuring Git
+## Installing and configuring Git
 
 To start using Git, first check whether it is installed on your computer. If you
 use WSL, Git is probably already installed. Otherwise, look
@@ -73,7 +73,7 @@ email connected to your Github account. In your terminal, run
 have a preferred text editor, run `git config --global core.editor=<editor>`
 in your terminal. By default, git will use nano.
 
-### Setting up secure connections with Github
+## Setting up secure connections with Github
 
 If you want to work with remote repositories, you will first need to set up a
 Github account and verify the email associated with it. Once you have done that,
@@ -84,7 +84,7 @@ Github, but the end result will be essentially the same either way. You will nee
 to remember which authentication protocol you chose, because the URL referring to
 a Github repository is slightly different when using HTTPS or SSH.
 
-#### Connecting with HTTPS
+### Connecting with HTTPS
 
 I haven't used HTTPS very much to communicate with Github, so take this with a
 grain of salt. My understanding is that you simply use your normal Github account
@@ -94,7 +94,7 @@ can choose the priveleges associated with each token, but this may not be necess
 for typical users. For more information about setting up personal access tokens,
 see the guide [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
-#### Connecting with SSH
+### Connecting with SSH
 
 Using SSH to authenticate requires the use of a public and private cryptographic
 key. The public key is provided to Github and the private key is kept on your
@@ -118,7 +118,7 @@ the key is on). In your terminal enter the command `cat ~/.ssh/id_ed25519.pub`
 and copy the output into the "Key" field on Github, then click "Add SSH key" to
 finish the process.
 
-## Setting up a project repository
+# Setting up a project repository
 
 In your Github account, click the ["New repository?"] button [near the upper right corner].
 Choose a relevant name for the project, scroll down, and click the [button] to create
@@ -147,7 +147,7 @@ in that directory. If you change your mind later, you can simply remove the name
 a file from the `.gitignore` file and add it to Git as described in the previous
 paragraph.
 
-## Storing commits in Git and Github
+# Storing commits in Git and Github
 
 As mentioned before, Git tracks changes to files by creating a chain of commits, each
 of which is a snapshot of the history of the files in the repository at a particular
@@ -157,7 +157,7 @@ history of the file(s), you will need to create a commit. As a general rule of t
 it's a good idea to commit often rather than waiting until many unrelated changes
 have accumulated.
 
-### Making commits to local repositories
+## Making commits to local repositories
 
 Once you have reached a point that you want to store as a commit, save your work and
 enter `git status` in your terminal. Git will display a list of all modified files,
@@ -180,8 +180,8 @@ line by line, and if you change a line it records that as removing the old versi
 of the line and adding the new version of the line to the file. Added lines are
 prefixed with `+` and removed lines are prefixed by `-` and may be highlighted with
 color depending on your terminal settings. As a quick reference, `git diff` will
-show all _unstaged_ changes compared to the last commit, `git diff --cached` will
-show all _staged_ changes compared to the last commit, and `git diff HEAD` will
+show all *unstaged* changes compared to the last commit, `git diff --cached` will
+show all *staged* changes compared to the last commit, and `git diff HEAD` will
 show all changes (staged or unstaged) compared to the last commit.
 
 Once you have staged all of the relevant changes, it is time to actually record
@@ -195,7 +195,7 @@ body of the message. Once you save the commit message, Git will record the commi
 If your commit message doesn't need a body, you can also enter it directly using
 the `-m` flag, like `git commit -m "<message>"`.
 
-### Interacting with remote repositories
+## Interacting with remote repositories
 
 When you initially set up a repository, Github tells you to designate a "remote"
 called `origin` which is associated with the Github URL of your repository. This
@@ -236,7 +236,7 @@ remote will also pull all intermediate commits between the state of your local
 repository and the commit on the remote. See the section about visualizing the
 project history if you need help thinking about this.
 
-### Git branches and collaborative editing
+## Git branches and collaborative editing
 
 When you are the only person working in a repository and are simply using Github
 as a backup system, the above information should be enough to keep you out of
@@ -244,7 +244,7 @@ trouble. However, if you are working in a repository with multiple authors (whic
 includes yourself working from multiple devices!), there are a few extra
 considerations to pay attention to.
 
-#### Potential pitfalls
+### Potential pitfalls
 
 The main issue that can arise in this situation is when multiple authors have
 edited the same file in a repository and made separate commits which are pushed or
@@ -263,9 +263,9 @@ your local uncommitted changes, resulting in lost work. If you are in this
 situation, you should commit your local changes, run `git fetch`, and then run
 `git merge` to incorporate the changes from the remote into your local files.
 To avoid this situation, it is good practice to never leave local changes
-uncommitted, and to always run `git pull` _before_ starting to edit a shared branch.
+uncommitted, and to always run `git pull` *before* starting to edit a shared branch.
 
-#### Best practice workflow
+### Best practice workflow
 
 Programmers have developed a common practice workflow for shared repositories to
 minimize the occurrence of issues like these. The core of this workflow is that the
@@ -296,7 +296,7 @@ This way you only have to merge once, and there's a much lower chance of someone
 writing over your work or you writing over theirs.
 
 To create a new branch, use the command `git branch <branchname>`. This creates
-the new branch, but it does *not* switch you to the new branch! You can see this
+the new branch, but it does **not** switch you to the new branch! You can see this
 by running `git log` or similar and looking at where `HEAD` is pointing (`HEAD`
 indicates your current view of the project history). At this point, the contents
 of the files in the original branch and the new branch will be identical. To switch
@@ -306,7 +306,7 @@ will be stored in the new branch instead of the original branch. Switching back 
 forth between branches with `git checkout` will "magically" update the contents of
 the files so that they reflect the current state of that branch.
 
-## Visualizing the project history
+# Visualizing the project history
 
 You may want to visually represent the chain of commits in your project's history.
 This can be accomplished with the `git log` command. This will display a list of
@@ -326,7 +326,7 @@ current state of each branch will be marked with the branch name (e.g. `main`) a
 `origin/main` indicate the state of the remote repository (e.g. the latest commit
 on the `main` branch which exists on the remote `origin`).
 
-## Useful Git aliases
+# Useful Git aliases
 
 For common operations, you may want to define aliases in Git. Here are a few that I
 find useful.
@@ -386,8 +386,8 @@ find useful.
 For example, if you set the first alias in the list, then typing `git co` in
 your terminal will be equivalent to typing `git checkout`.
 
-###
+# Updating instructions
 
 To the poor soul updating this: edit the .md file with a text editor, then render:
 
-`pandoc -t latex -f gfm -V colorlinks=true -o "Intro to Github.pdf" "intro-to-github.md"`
+`pandoc -t latex -f gfm -V colorlinks=true -V title="Intro to Git and Github" -V geometry="margin=1in" --toc -o "Intro to Github.pdf" "intro-to-github.md"`
