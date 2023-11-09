@@ -277,8 +277,8 @@ into the main branch once the feature is complete.
             \
              E--F--G (newbranch)
 
-As other people complete features and merge their branches into `main`, the two
-branches will now have distinct histories:
+As other people merge their branches into `main`, the two
+branches will have distinct histories:
 
         A--B--C--D (main)
             \
@@ -390,4 +390,4 @@ your terminal will be equivalent to typing `git checkout`.
 
 To the poor soul updating this: edit the .md file with a text editor, then render:
 
-`pandoc -t latex -f gfm -V colorlinks=true -V title="Intro to Git and Github" -V geometry="margin=1in" --toc -o "Intro to Github.pdf" "intro-to-github.md"`
+`pandoc -t latex -f gfm -V geometry="margin=1in" -V title="Intro to Git and Github" --toc -V colorlinks=true -o "Intro to Github.pdf" "intro-to-github.md"`
